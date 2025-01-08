@@ -25,9 +25,23 @@
         let num1Value = parseFloat(num1Input.value);
         let operatorValue = op.value;
         let num2Value = parseFloat(num2Input.value);
+        let result;
+        let errors = validateUserInput(num1Value, num2Value.operatorValue);
+        if (errors.length > 0) {
+          result = errors.join("<br>");
+        } else {
+          result = calculate(num1Value, num2Value, operatorValue);
+        }
 
-        let result = calculate(num1Value, num2Value, operatorValue);
         output.innerHTML = result;
+      }
+
+      function validateUserInput(n1, n2, op) {
+        let ary = [];
+        if (isNaN(n1)) {
+          ary.push("pirmais skaitlis nav pareizs");
+        }
+        return ary;
       }
 
       function calculate(n1, n2, op) {
