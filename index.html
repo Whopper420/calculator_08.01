@@ -22,31 +22,35 @@
       btn.addEventListener("click", handleClick);
 
       function handleClick() {
-        let num1Value = num1Input.value;
+        let num1Value = parseFloat(num1Input.value);
         let operatorValue = op.value;
-        let num2Value = num2Input.value;
+        let num2Value = parseFloat(num2Input.value);
 
+        let result = calculate(num1Value, num2Value, operatorValue);
+        output.innerHTML = result;
+      }
+
+      function calculate(n1, n2, op) {
         let result;
-        switch (operatorValue) {
+        switch (op) {
           case "+":
-            result = num1Value + num2Value;
+            result = n1 + n2;
             break;
           case "-":
-            result = num1Value - num2Value;
+            result = n1 - n2;
             break;
           case "*":
-            result = num1Value * num2Value;
+            result = n1 * n2;
             break;
           case "/":
-            result = num1Value / num2Value;
+            result = n1 / n2;
             break;
 
           default:
             console.log("Error404");
             break;
-
-            output.innerHTML = result;
         }
+        return result;
       }
     </script>
   </body>
