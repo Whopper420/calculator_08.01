@@ -14,11 +14,39 @@
 
     <script>
       const btn = document.getElementById("btn");
+      const num1Input = document.getElementById("num1");
+      const op = document.getElementById("operator");
+      const num2Input = document.getElementById("num2");
+      const output = document.getElementById("output");
 
       btn.addEventListener("click", handleClick);
 
       function handleClick() {
-        console.log("cookies?");
+        let num1Value = num1Input.value;
+        let operatorValue = op.value;
+        let num2Value = num2Input.value;
+
+        let result;
+        switch (operatorValue) {
+          case "+":
+            result = num1Value + num2Value;
+            break;
+          case "-":
+            result = num1Value - num2Value;
+            break;
+          case "*":
+            result = num1Value * num2Value;
+            break;
+          case "/":
+            result = num1Value / num2Value;
+            break;
+
+          default:
+            console.log("Error404");
+            break;
+
+            output.innerHTML = result;
+        }
       }
     </script>
   </body>
