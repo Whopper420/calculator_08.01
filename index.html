@@ -18,6 +18,7 @@
       const op = document.getElementById("operator");
       const num2Input = document.getElementById("num2");
       const output = document.getElementById("output");
+      const allowedOperators = ["+", "-", "*", "/"];
 
       btn.addEventListener("click", handleClick);
 
@@ -26,8 +27,10 @@
         let operatorValue = op.value;
         let num2Value = parseFloat(num2Input.value);
         let result;
-        let errors = validateUserInput(num1Value, num2Value.operatorValue);
+
+        let errors = validateUserInput(num1Value, num2Value, operatorValue);
         if (errors.length > 0) {
+          output.style.color = "red";
           result = errors.join("<br>");
         } else {
           result = calculate(num1Value, num2Value, operatorValue);
@@ -39,7 +42,16 @@
       function validateUserInput(n1, n2, op) {
         let ary = [];
         if (isNaN(n1)) {
-          ary.push("pirmais skaitlis nav pareizs");
+          ary.push("Pirmais skaitlis nav pareizs");
+        }
+        if (isNaN(n2)) {
+          ary.push("Otrais skaitlis nav pareizs");
+        }
+        if (!allowedOperators.includes(op)) {
+          ary.push("Operators nav pareizs. Izmantojiet +, -, *, vai /.");
+        }
+        if (op === "/" && n2 === 0) {
+          ary.push("Dalīšana ar nulli nav atļauta.");
         }
         return ary;
       }
@@ -59,9 +71,8 @@
           case "/":
             result = n1 / n2;
             break;
-
           default:
-            console.log("Error404");
+            result = "Nezināma kļūda.";
             break;
         }
         return result;
