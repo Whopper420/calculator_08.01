@@ -10,10 +10,12 @@
     <input type="text" id="operator" />
     <input type="text" id="num2" />
     <button id="btn">Rēķināt</button>
+    <button id="btn2">clear</button>
     <p id="output"></p>
 
     <script>
       const btn = document.getElementById("btn");
+      const btn2 = document.getElementById("btn2");
       const num1Input = document.getElementById("num1");
       const op = document.getElementById("operator");
       const num2Input = document.getElementById("num2");
@@ -21,6 +23,14 @@
       const allowedOperators = ["+", "-", "*", "/"];
 
       btn.addEventListener("click", handleClick);
+      btn2.addEventListener("click", clearinput);
+
+      function clearinput() {
+        num1Input.value = "";
+        num2Input.value = "";
+        op.value = "";
+        output.innerHTML = "";
+      }
 
       function handleClick() {
         let num1Value = parseFloat(num1Input.value);
