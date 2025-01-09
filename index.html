@@ -31,7 +31,8 @@
         let errors = validateUserInput(num1Value, num2Value, operatorValue);
         if (errors.length > 0) {
           output.style.color = "red";
-          result = errors.join("<br>");
+
+          result = HTMLerrorformat(errors);
         } else {
           result = calculate(num1Value, num2Value, operatorValue);
         }
@@ -76,6 +77,14 @@
             break;
         }
         return result;
+      }
+
+      function HTMLerrorformat(errorsAry) {
+        let htmlerrorsAsString = "";
+        for (let i = 0; i < errorsAry.length; i++) {
+          htmlerrorsAsString += `<li>${errorsAry[i]}</li>`;
+        }
+        return `<ul>${htmlerrorsAsString}</ul>`;
       }
     </script>
   </body>
